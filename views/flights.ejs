@@ -1,0 +1,181 @@
+<%- include("partials/header.ejs") %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flights</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-image: url('fsd_img_3.png'); 
+            background-size: cover; 
+            background-position: center; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+            color: #000; 
+        }
+
+        section#flights {
+            text-align: center;
+            padding: 50px 20px;
+            flex: 1; 
+            background-color: rgba(0, 0, 0, 0.5); 
+            border-radius: 10px; 
+            color: #000; 
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #000; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .flight-card {
+            background: rgba(255, 255, 255, 0.8); 
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin: 20px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .flight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .flight-info {
+            flex: 1;
+        }
+
+        form#flight-search {
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            background-color: #ff7043;
+            color: white;
+            padding: 10px 25px;
+            text-transform: uppercase;
+            font-size: 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #ff5722;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <section id="flights">
+        <h2>Flights</h2>
+        <form id="flight-search" action="/flights" method="get">
+
+            <input type="hidden" name="chosenDestination" value="<%= chosenDestination %>">
+            <input type="hidden" name="hotelName" value="<%= hotelName %>">
+
+            <label for="origin">Origin:</label>
+            <select id="origin" name="origin">
+                <option value="" disabled selected>Select Origin</option>
+                <option value="">ANY</option>
+                <option value="Bengaluru">Bangalore</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Kolkata">Kolkata</option>
+            </select>
+
+            <input type="hidden" name="chosenDestination" value="<%= destination %>">
+
+            <label for="departure-date">Departure Date:</label>
+            <input type="date" id="departure-date" name="departureDate">
+
+            <label for="return-date">Return Date:</label>
+            <input type="date" id="return-date" name="returnDate">
+
+            <label for="airline">Airline:</label>
+            <select id="airline" name="airline">
+                <option value="" disabled selected>Select Airline</option>
+                <option value="">ANY</option>
+                <option value="Air India">Air India</option>
+                <option value="AirAsia India">AirAsia India</option>
+                <option value="GoAir">GoAir</option>
+                <option value="Jet Airways">Jet Airways</option>
+                <option value="Jetlite">Jetlite</option>
+                <option value="SpiceJet">SpiceJet</option>
+                <option value="TestIndigo">TestIndigo</option>
+                <option value="TruJet">TruJet</option>
+                <option value="Vistara">Vistara</option>
+            </select>
+
+            <button type="submit" class="btn">Search Flights</button>
+        </form>
+    </section>
+
+    <section id="flights-list">
+        <h2 style="color: black;">Available Flights</h2>
+        <% flights.forEach(flight => { %>
+            <div class="flight-card">
+                <div class="flight-info">
+                    <p><strong>Destination:</strong> <%= flight.destination %></p>
+                    <p><strong>Source:</strong> <%= flight.origin %></p>
+                    <p><strong>Airline:</strong> <%= flight.airline %></p>
+                    <p><strong>Price:</strong> Rs <%= flight.price %></p>
+                </div>
+
+                <div class="flight-action">
+                    <form action="/final" method="get">
+                        <input type="hidden" name="chosenDestination" value="<%= destination %>">
+                        <input type="hidden" name="price" value="<%= flight.price %>"> 
+                        <input type="hidden" name="departureTime" value="<%= flight.scheduledDepartureTime %>"> 
+                        <input type="hidden" name="origin" value="<%= origin %>"> 
+                        <input type="hidden" name="airline" value="<%= airline %>"> 
+                        <input type="hidden" name="departureDate" value="<%= departureDate %>"> 
+                        <input type="hidden" name="returnDate" value="<%= returnDate %>"> 
+                        <input type="hidden" name="chosenHotel" value="<%= chosenHotel %>"> 
+                        <input type="hidden" name="hotelName" value="<%= chosenHotel.Hotel_Name %>">
+                        <input type="hidden" name="hotelPrice" value="<%= chosenHotel.Hotel_Price %>">
+                        <input type="hidden" name="Feature1" value="<%= chosenHotel.Feature_1 %>">
+                        <input type="hidden" name="Feature2" value="<%= chosenHotel.Feature_2 %>">
+                        <input type="hidden" name="Feature3" value="<%= chosenHotel.Feature_3 %>">
+                        <input type="hidden" name="Feature4" value="<%= chosenHotel.Feature_4 %>">
+                        <input type="hidden" name="Feature5" value="<%= chosenHotel.Feature_5 %>">
+                        <input type="hidden" name="Feature6" value="<%= chosenHotel.Feature_6 %>">
+                        <input type="hidden" name="Feature7" value="<%= chosenHotel.Feature_7 %>">
+                        <input type="hidden" name="Feature8" value="<%= chosenHotel.Feature_8 %>">
+                        <input type="hidden" name="Feature9" value="<%= chosenHotel.Feature_9 %>">
+
+                        <button type="submit" class="btn choose-btn">Select</button>
+                    </form>
+                </div>
+            </div>
+        <% }) %>
+    </section>
+
+    <footer>
+        <%- include("partials/footer.ejs") %>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<%- include("partials/header.ejs") %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Agency Platform</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #f0f8ff, #e0f7fa);
+        }
+
+        section#destinations {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 300px;
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin: 20px 0 10px;
+            color: #444;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #777;
+            padding: 0 15px 20px;
+        }
+
+        .card .btn {
+            display: inline-block;
+            background-color: #ff7043;
+            color: white;
+            padding: 10px 25px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-size: 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .card .btn:hover {
+            background-color: #ff5722;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Selected card styling */
+        .card.selected {
+            border: 3px solid #ff5722;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <section id="destinations">
+        <h2>Popular Destinations</h2>
+        
+        <div class="cards" id="cards">
+            <div class="card" id="a">
+                <img src="bangalore.jpg" alt="Bangalore Image">
+                <h3>Bangalore</h3>
+                <p>The vibrant tech city known for its parks and nightlife.</p>
+                <form action="/hotels" method="get">
+                    <input type="hidden" name="chosenDestination" value="bangalore">
+                    <button type="submit" class="btn">Explore</button>
+                </form>
+            </div>
+            <div class="card" id="b">
+                <img src="delhi.jpg" alt="Delhi Image">
+                <h3>Delhi</h3>
+                <p>The bustling capital of India, rich in history and culture.</p>
+                <form action="/hotels" method="get">
+                    <input type="hidden" name="chosenDestination" value="delhi">
+                    <button type="submit" class="btn">Explore</button>
+                </form>
+            </div>
+            <div class="card" id="c">
+                <img src="chennai.jpg" alt="Chennai Image">
+                <h3>Chennai</h3>
+                <p>Known for its temples, beaches, and cuisine.</p>
+                <form action="/hotels" method="get">
+                    <input type="hidden" name="chosenDestination" value="chennai">
+                    <button type="submit" class="btn">Explore</button>
+                </form>
+            </div>
+            <div class="card" id="d">
+                <img src="kolkata.jpg" alt="Kolkata Image">
+                <h3>Kolkata</h3>
+                <p>The cultural capital with a vibrant arts scene.</p>
+                <form action="/hotels" method="get">
+                    <input type="hidden" name="chosenDestination" value="kolkata">
+                    <button type="submit" class="btn">Explore</button>
+                </form>
+            </div>
+            <div class="card" id="e">
+                <img src="mumbai.jpeg" alt="Mumbai Image">
+                <h3>Mumbai</h3>
+                <p>The city that never sleeps, known for Bollywood and its bustling streets.</p>
+                <form action="/hotels" method="get">
+                    <input type="hidden" name="chosenDestination" value="mumbai">
+                    <button type="submit" class="btn">Explore</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+<%- include("partials/footer.ejs") %>

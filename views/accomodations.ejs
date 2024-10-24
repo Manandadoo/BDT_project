@@ -1,0 +1,50 @@
+<%- include("partials/header.ejs") %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+
+    <section id="budget">
+        <h2>Set Your Budget</h2>
+        <form id="budget-form">
+            <label for="budget">Enter Your Budget:</label>
+            <input type="number" id="budget" name="budget" placeholder="Enter your budget">
+    
+            <button type="submit" class="btn">Submit Budget</button>
+        </form>
+    </section>
+    
+
+
+    <section id="hotels">
+        <h2>Hotels</h2>
+        <p>Hotels</p>
+        <a href="/hotels" class="btn">Explore</a>
+    </section>
+
+    <section id="flights">
+        <h2>Flights</h2>
+        <form id="flight-search">
+            <label for="origin">Origin:</label>
+            <input type="text" id="origin" name="origin">
+
+            <label for="departure-date">Departure Date:</label>
+            <input type="date" id="departure-date" name="departure-date">
+
+            <label for="return-date">Return Date:</label>
+            <input type="date" id="return-date" name="return-date">
+
+            <button type="submit" class="btn">Search Flights</button>
+        </form>
+    </section>
+</body>
+</html>
+
+<%- include("partials/footer.ejs") %>

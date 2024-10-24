@@ -1,0 +1,161 @@
+<%- include("partials/header.ejs") %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #f0f8ff, #e0f7fa);
+        }
+
+        section#filters {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .hotel-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin: 20px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hotel-info {
+            flex: 1;
+        }
+
+        .hotel-info h3 {
+            font-size: 1.8rem;
+            color: #444;
+        }
+
+        .hotel-info p {
+            font-size: 1rem;
+            color: #777;
+        }
+
+        .hotel-action {
+            align-self: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #ff7043;
+            color: white;
+            padding: 10px 25px;
+            text-transform: uppercase;
+            font-size: 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ff5722;
+        }
+
+        /* Selected card styling */
+        .hotel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <section id="filters">
+        <h2>Filters</h2>
+        <form id="filters-form" action="/hotels" method="GET">
+
+            <input type="hidden" name="chosenDestination" value="<%= destination %>">
+
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating">
+                <option value="">All Ratings</option>
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+            </select>
+
+            <label for="price">Max Price:</label>
+            <input type="number" id="price" name="price" placeholder="Enter max price">
+
+            <button type="submit" class="btn">Apply Filters</button>
+        </form>
+    </section>
+
+    <section id="hotels-list">
+        <h2>Available Hotels</h2>
+        <% hotels.forEach(hotel => { %>
+            <div class="hotel-card">
+                <div class="hotel-info">
+                    <h3><%= hotel.Hotel_Name %></h3>
+                    <div class="hotel-details">
+                        <p><strong>Price:</strong> Rs <%= hotel.Hotel_Price %></p>
+                        <p><strong>Rating:</strong> <%= hotel.Hotel_Rating %> Stars</p>
+                    </div>
+                    <div class="amenities-section">
+                        <h4>Top Amenities:</h4>
+                        <p>
+                            <%= hotel.Feature_1 %>, 
+                            <%= hotel.Feature_2 %>, 
+                            <%= hotel.Feature_3 %>, 
+                            <%= hotel.Feature_4 %>, 
+                            <%= hotel.Feature_5 %>, 
+                            <%= hotel.Feature_6 %>, 
+                            <%= hotel.Feature_7 %>, 
+                            <%= hotel.Feature_8 %>, 
+                            <%= hotel.Feature_9 %>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="hotel-action">
+                    <form action="/flights" method="get">
+                        <input type="hidden" name="chosenDestination" value="<%= destination %>">
+
+                        
+                        <input type="hidden" name="hotelName" value="<%= hotel.Hotel_Name %>">
+                        <input type="hidden" name="hotelPrice" value="<%= hotel.Hotel_Price %>">
+                        <input type="hidden" name="Feature1" value="<%= hotel.Feature_1 %>">
+                        <input type="hidden" name="Feature2" value="<%= hotel.Feature_2 %>">
+                        <input type="hidden" name="Feature3" value="<%= hotel.Feature_3 %>">
+                        <input type="hidden" name="Feature4" value="<%= hotel.Feature_4 %>">
+                        <input type="hidden" name="Feature5" value="<%= hotel.Feature_5 %>">
+                        <input type="hidden" name="Feature6" value="<%= hotel.Feature_6 %>">
+                        <input type="hidden" name="Feature7" value="<%= hotel.Feature_7 %>">
+                        <input type="hidden" name="Feature8" value="<%= hotel.Feature_8 %>">
+                        <input type="hidden" name="Feature9" value="<%= hotel.Feature_9 %>">
+                        <button type="submit" class="btn choose-btn">Choose</button>
+                    </form>
+                </div>
+            </div>
+        <% }); %>
+    </section>
+
+</body>
+</html>
+
+<%- include("partials/footer.ejs") %>

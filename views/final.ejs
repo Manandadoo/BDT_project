@@ -1,0 +1,119 @@
+<%- include("partials/header.ejs") %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerary</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('itenary.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff7043; 
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: none; 
+            background-color: transparent; 
+        }
+
+        .navbar {
+            background-color: transparent; 
+            box-shadow: none; 
+        }
+
+        .navbar-brand {
+            color: #ff7043; 
+        }
+
+        .navbar a {
+            color: #333; 
+        }
+
+        .navbar a:hover {
+            color: #ff7043; 
+        }
+
+        .itinerary-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8); 
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background: #fafafa; 
+        }
+
+        .section h2 {
+            color: #ff7043; 
+        }
+
+        .section p {
+            margin: 5px 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: whitesmoke;">Your Itinerary</h1>
+    <div class="itinerary-container">
+        <div class="section">
+            <h2>Trip Details</h2>
+            <p><strong>Destination:</strong> <%= chosenDestination %></p>
+            <p><strong>Hotel Name:</strong> <%= hotelName %></p>
+            <p><strong>Hotel Price:</strong> Rs <%= hotelPrice %></p>
+        </div>
+
+        <div class="section">
+            <h2>Hotel Features</h2>
+            <% features.forEach((feature, index) => { %>
+                <p><strong>Feature <%= index + 1 %>:</strong> <%= feature %></p>
+            <% }); %>
+        </div>
+
+        <div class="section">
+            <h2>Flight Details</h2>
+            <p><strong>Flight Airline:</strong> <%= airline %></p>
+            <p><strong>Origin:</strong> <%= origin %></p>
+            <p><strong>Destination:</strong> <%= chosenDestination %></p>
+            <p><strong>Departure Date:</strong> <%= departureDate %></p>
+            <p><strong>Return Date:</strong> <%= returnDate %></p>
+            <p><strong>Price:</strong> Rs <%= price %></p>
+        </div>
+
+        <div class="section">
+            <h2>Total Expense</h2>
+            <p><strong>Total:</strong> Rs <%= parseFloat(hotelPrice) + parseFloat(price) %></p>
+        </div>
+
+        <div class="footer">
+            <p>Thank you for choosing our service!</p>
+            <p><a href="/intro">Back to Home</a></p>
+        </div>
+    </div>
+</body>
+</html>

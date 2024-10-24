@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to TravelEase</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, rgba(0, 123, 255, 0.8), rgba(255, 87, 34, 0.8)), url('/images/travel-background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .hero {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 80px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 4rem;
+            color: #fff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #f9f9f9;
+            line-height: 1.6;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            text-decoration: none;
+            background-color: #f39c12;
+            color: #fff;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            border-radius: 30px;
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.5);
+            transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e67e22;
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(243, 156, 18, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <section id="home">
+        <div class="hero">
+            <h2>Discover New Adventures with TravelEase</h2>
+            <p>Your gateway to exploring exciting destinations with exclusive deals on flights, hotels, and tours.</p>
+            <a href="/destination" class="btn">Start Your Journey</a>
+        </div>
+    </section>
+</body>
+</html>
